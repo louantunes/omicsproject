@@ -18,8 +18,11 @@ if (!requireNamespace("DESeq2", quietly = TRUE)) {
   message("DESeq2 is already installed.")
 }
 
+install.packages("readxl")
+
 # Load DESeq2
 library(DESeq2)
+library(readxl)
 
 message("DESeq2 loaded successfully!")
 
@@ -109,10 +112,20 @@ dim(filteredcounts)
 
 #it went from 58306 to 30862
 
-# test
-#helloo
+write.table(
+  filteredcounts,
+  file = "filtered_gene_counts.tsv",
+  sep = "\t",
+  quote = FALSE,
+  row.names = FALSE
+)
 
+install.packages("writexl")
+library(writexl)
 
-
+write_xlsx(
+  filtermeta,
+  "filtered_metadata.xlsx"
+)
 
 
